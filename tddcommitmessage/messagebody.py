@@ -1,3 +1,6 @@
 class MessageBody:
     def __init__(self, message):
-        pass
+        self._message = message
+
+    def __str__(self):
+        return '"' + self._message + '"'
