@@ -17,6 +17,8 @@ class State:
         elif self._current_state == Kinds.green:
             if proposed_state == Kinds.refactor:
                 return True
+            elif proposed_state == Kinds.red:
+                return True
         return False
 
     def change(self, to_state):
