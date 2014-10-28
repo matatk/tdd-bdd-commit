@@ -1,3 +1,7 @@
+class MessageBodyError(Exception):
+    pass
+
+
 class MessageBody:
     def __init__(self, kind, message):
         self._message = self._capitalise_first(message)
