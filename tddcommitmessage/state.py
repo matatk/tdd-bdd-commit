@@ -5,3 +5,6 @@ class State:
         if next_state == Kinds.initial:
             return True
         return False
+
+    def change(self, state):
+        pass
