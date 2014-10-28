@@ -26,3 +26,8 @@ def test_empty_message_raises_error():
     with pytest.raises(MessageBodyError) as excinfo:
         MessageBody(Kind.red, None)
     assert 'No message given' in str(excinfo.value)
+
+def test_empty_kind_raises_error():
+    with pytest.raises(MessageBodyError) as excinfo:
+        MessageBody(None, '42')
+    assert 'No commit kind given' in str(excinfo.value)
