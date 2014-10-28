@@ -2,6 +2,10 @@ import pytest
 from tddcommitmessage.messagebody import MessageBody, MessageBodyError
 from tddcommitmessage import Kind
 
+#
+# String handling
+#
+
 def test_message_is_wrapped_in_quotes():
     msg = MessageBody(Kind.red, 'Forty-two')
     assert str(msg) == '"RED Forty-two"'
@@ -13,6 +17,11 @@ def test_first_letter_capitalised():
 def test_message_with_double_quote_is_wrapped_with_single():
     msg = MessageBody(Kind.red, 'But what are "Birds"?')
     assert str(msg) == r"""'RED But what are "Birds"?'"""
+
+
+#
+# Message Validity
+#
 
 def test_long_message_raises_error():
     max_length = 75
@@ -26,6 +35,11 @@ def test_empty_message_raises_error():
     with pytest.raises(MessageBodyError) as excinfo:
         MessageBody(Kind.red, None)
     assert 'No message given' in str(excinfo.value)
+
+
+#
+# Kind Validity
+#
 
 def test_empty_kind_raises_error():
     with pytest.raises(MessageBodyError) as excinfo:
