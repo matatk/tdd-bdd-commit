@@ -1,0 +1,2 @@
+class Kinds:
+    initial = 'INITIAL'
