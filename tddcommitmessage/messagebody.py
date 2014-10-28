@@ -3,4 +3,7 @@ class MessageBody:
         self._message = message
 
     def __str__(self):
-        return '"' + self._message + '"'
+        if '"' in self._message:
+            return "'" + self._message + "'"
+        else:
+            return '"' + self._message + '"'
