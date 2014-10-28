@@ -1,4 +1,4 @@
-from tddcommitmessage import Kinds
+from tddcommitmessage import Kind
 
 class State:
     def __init__(self):
@@ -6,25 +6,25 @@ class State:
 
     def allowed(self, proposed_state):
         if not self._current_state:
-            if proposed_state == Kinds.initial:
+            if proposed_state == Kind.initial:
                 return True
-        elif self._current_state == Kinds.initial:
-            if proposed_state == Kinds.red:
+        elif self._current_state == Kind.initial:
+            if proposed_state == Kind.red:
                 return True
-        elif self._current_state == Kinds.red:
-            if proposed_state == Kinds.green:
+        elif self._current_state == Kind.red:
+            if proposed_state == Kind.green:
                 return True
-        elif self._current_state == Kinds.green:
-            if proposed_state == Kinds.refactor:
+        elif self._current_state == Kind.green:
+            if proposed_state == Kind.refactor:
                 return True
-            elif proposed_state == Kinds.red:
+            elif proposed_state == Kind.red:
                 return True
-            elif proposed_state == Kinds.merge:
+            elif proposed_state == Kind.merge:
                 return True
-        elif self._current_state == Kinds.refactor:
-            if proposed_state == Kinds.red:
+        elif self._current_state == Kind.refactor:
+            if proposed_state == Kind.red:
                 return True
-            elif proposed_state == Kinds.merge:
+            elif proposed_state == Kind.merge:
                 return True
         return False
 

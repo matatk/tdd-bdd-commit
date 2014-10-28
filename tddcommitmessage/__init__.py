@@ -1,4 +1,4 @@
-class Kinds:
+class Kind:
     initial = 'INITIAL'
     red = 'RED'
     green = 'GREEN'
