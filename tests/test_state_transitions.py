@@ -1,24 +1,43 @@
 from tddcommitmessage.state import State
 from tddcommitmessage import Kind
 
-def test_initial_allowed_first():
+#
+# Before any state transitions, only 'initial' is allowed
+#
+
+def test_initial_is_allowed_first():
     state = State()
     assert state.allowed(Kind.initial) is True
 
-def test_only_initial_allowed_first():
+def test_only_initial_is_allowed_first():
     state = State()
     assert state.allowed(None) is False
 
-def test_red_allowed_after_initial():
+
+#
+# What is allowed after 'initial'?
+#
+
+def test_red_is_allowed_after_initial():
     state = State()
     state.change(Kind.initial)
     assert state.allowed(Kind.red) is True
 
-def test_green_allowed_after_red():
+
+#
+# What is allowed after 'red'?
+#
+
+def test_green_is_allowed_after_red():
     state = State()
     state.change(Kind.initial)
     state.change(Kind.red)
     assert state.allowed(Kind.green) is True
+
+
+#
+# What is allowed after 'green'?
+#
 
 def test_refactor_is_allowed_after_green():
     state = State()
@@ -40,6 +59,11 @@ def test_merge_is_allowed_after_green():
     state.change(Kind.red)
     state.change(Kind.green)
     assert state.allowed(Kind.merge) is True
+
+
+#
+# What is allowed after 'refactor'?
+#
 
 def test_red_is_allowed_after_refactor():
     state = State()
