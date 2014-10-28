@@ -21,6 +21,9 @@ class State:
                 return True
             elif proposed_state == Kinds.merge:
                 return True
+        elif self._current_state == Kinds.refactor:
+            if proposed_state == Kinds.red:
+                return True
         return False
 
     def change(self, to_state):
