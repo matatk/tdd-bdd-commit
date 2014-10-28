@@ -3,9 +3,16 @@ class MessageBodyError(Exception):
 
 
 class MessageBody:
+    max_length = 75
+
     def __init__(self, kind, message):
         self._message = self._capitalise_first(message)
         self._kind = kind
+        total_length = len(self._kind) + len(self._message) + 1  # the space
+        if total_length > self.max_length:
+            overflow = total_length - self.max_length
+            raise MessageBodyError(
+                'Given message is ' + str(overflow) + ' character(s) too long')
 
     @staticmethod
     def _capitalise_first(string):
