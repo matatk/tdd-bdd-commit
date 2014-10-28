@@ -33,3 +33,10 @@ def test_red_is_allowed_after_green():
     state.change(Kinds.red)
     state.change(Kinds.green)
     assert state.allowed(Kinds.red) is True
+
+def test_merge_is_allowed_after_green():
+    state = State()
+    state.change(Kinds.initial)
+    state.change(Kinds.red)
+    state.change(Kinds.green)
+    assert state.allowed(Kinds.merge) is True

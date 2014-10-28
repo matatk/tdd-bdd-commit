@@ -3,3 +3,4 @@ class Kinds:
     red = 'RED'
     green = 'GREEN'
     refactor = 'REFACTOR'
+    merge = 'MERGE'
