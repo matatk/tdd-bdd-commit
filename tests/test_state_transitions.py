@@ -26,3 +26,10 @@ def test_refactor_is_allowed_after_green():
     state.change(Kinds.red)
     state.change(Kinds.green)
     assert state.allowed(Kinds.refactor) is True
+
+def test_red_is_allowed_after_green():
+    state = State()
+    state.change(Kinds.initial)
+    state.change(Kinds.red)
+    state.change(Kinds.green)
+    assert state.allowed(Kinds.red) is True
