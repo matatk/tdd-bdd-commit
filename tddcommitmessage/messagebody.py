@@ -6,6 +6,8 @@ class MessageBody:
     max_length = 75
 
     def __init__(self, kind, message):
+        if not message:
+            raise MessageBodyError('No message given')
         self._message = self._capitalise_first(message)
         self._kind = kind
         total_length = len(self._kind) + len(self._message) + 1  # the space
