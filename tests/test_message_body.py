@@ -21,3 +21,8 @@ def test_long_message_raises_error():
     with pytest.raises(MessageBodyError) as excinfo:
         MessageBody(Kind.red, long_message)
     assert '1 character(s) too long' in str(excinfo.value)
+
+def test_empty_message_raises_error():
+    with pytest.raises(MessageBodyError) as excinfo:
+        MessageBody(Kind.red, None)
+    assert 'No message given' in str(excinfo.value)
