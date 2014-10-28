@@ -9,6 +9,8 @@ class MessageBody:
         if not message:
             raise MessageBodyError('No message given')
         self._message = self._capitalise_first(message)
+        if not kind:
+            raise MessageBodyError('No commit kind given')
         self._kind = kind
         total_length = len(self._kind) + len(self._message) + 1  # the space
         if total_length > self.max_length:
