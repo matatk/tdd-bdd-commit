@@ -65,6 +65,14 @@ def test_merge_is_allowed_after_green():
 # What is allowed after 'refactor'?
 #
 
+def test_refactor_is_allowed_after_refactor():
+    state = State()
+    state.change(Kind.initial)
+    state.change(Kind.red)
+    state.change(Kind.green)
+    state.change(Kind.refactor)
+    assert state.allowed(Kind.refactor) is True
+
 def test_red_is_allowed_after_refactor():
     state = State()
     state.change(Kind.initial)
