@@ -1,4 +1,4 @@
-from tddcommitmessage import Kind
+from tddcommit import Kind
 
 class State:
     def __init__(self):

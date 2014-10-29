@@ -1,6 +1,6 @@
 import pytest
-from tddcommitmessage.messagebody import MessageBody, MessageBodyError
-from tddcommitmessage import Kind
+from tddcommit.messagebody import MessageBody, MessageBodyError
+from tddcommit import Kind
 
 #
 # String handling

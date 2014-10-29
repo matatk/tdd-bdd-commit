@@ -1,5 +1,5 @@
-from tddcommitmessage.state import State
-from tddcommitmessage import Kind
+from tddcommit.state import State
+from tddcommit import Kind
 
 #
 # Before any state transitions, only 'initial' is allowed
