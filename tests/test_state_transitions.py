@@ -104,6 +104,23 @@ def test_states_allowed_after_merge(state_merge):
 
 
 #
+# What is allowed after 'beige'?
+#
+
+@pytest.fixture
+def state_beige():
+    state = State()
+    state.change(Kind.initial)
+    state.change(Kind.red)
+    state.change(Kind.green)
+    state.change(Kind.beige)
+    return state
+
+def test_states_allowed_after_beige(state_beige):
+    _check_standard_next_states_are_allowed(state_beige)
+
+
+#
 # Forcing a change to an invalid state raises
 #
 
