@@ -13,7 +13,8 @@ class State:
             if proposed_state == Kind.initial:
                 return True
         elif self._current_state == Kind.initial:
-            if proposed_state == Kind.red:
+            if proposed_state == Kind.red \
+            or proposed_state == Kind.beige:
                 return True
         elif self._current_state == Kind.red:
             if proposed_state == Kind.green:
