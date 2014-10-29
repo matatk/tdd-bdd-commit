@@ -101,3 +101,11 @@ def test_refactor_is_allowed_after_merge():
     state.change(Kind.green)
     state.change(Kind.merge)
     assert state.allowed(Kind.refactor) is True
+
+def test_red_is_allowed_after_merge():
+    state = State()
+    state.change(Kind.initial)
+    state.change(Kind.red)
+    state.change(Kind.green)
+    state.change(Kind.merge)
+    assert state.allowed(Kind.red) is True
