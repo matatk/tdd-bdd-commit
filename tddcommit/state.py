@@ -24,7 +24,8 @@ class State:
           or self._current_state == Kind.merge:
             if proposed_state == Kind.refactor \
             or proposed_state == Kind.red \
-            or proposed_state == Kind.merge:
+            or proposed_state == Kind.merge \
+            or proposed_state == Kind.beige:
                 return True
         return False
 
