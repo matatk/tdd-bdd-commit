@@ -39,8 +39,8 @@ If you haven't got them, get **pip** and **virtualenv**
  * `pip install virtualenv`
 
 Create and activate the virtual environment
- * `virtualenv venv`
- * `. venv/bin/activate`
+ * `virtualenv .venv`
+ * `. .venv/bin/activate`
 
 Install/update packages
  * `pip install -r requirements.txt`
@@ -49,7 +49,7 @@ Install/update packages
 ### Day-to-day Development
 
 Activate the virtual environment and set the path for testing
- * `. venv/bin/activate`
+ * `. .venv/bin/activate`
  * `export PYTHONPATH=.`
 
 **Note:** if you have [autoenv](https://github.com/kennethreitz/autoenv), the virtualenv script will be automatically sourced when you enter the directory.
