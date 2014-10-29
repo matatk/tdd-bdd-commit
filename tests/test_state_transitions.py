@@ -88,3 +88,16 @@ def test_merge_is_allowed_after_refactor():
     state.change(Kind.green)
     state.change(Kind.refactor)
     assert state.allowed(Kind.merge) is True
+
+
+#
+# What is allowed after 'merge'?
+#
+
+def test_refactor_is_allowed_after_merge():
+    state = State()
+    state.change(Kind.initial)
+    state.change(Kind.red)
+    state.change(Kind.green)
+    state.change(Kind.merge)
+    assert state.allowed(Kind.refactor) is True
