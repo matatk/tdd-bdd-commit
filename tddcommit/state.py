@@ -21,7 +21,8 @@ class State:
                 return True
         elif self._current_state == Kind.green \
           or self._current_state == Kind.refactor \
-          or self._current_state == Kind.merge:
+          or self._current_state == Kind.merge \
+          or self._current_state == Kind.beige:
             if proposed_state == Kind.refactor \
             or proposed_state == Kind.red \
             or proposed_state == Kind.merge \

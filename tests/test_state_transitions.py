@@ -1,7 +1,6 @@
 import pytest
 from tddcommit.state import State, StateTransitionError
 from tddcommit import Kind
-# FIXME if doing a beige after initial, it should not be possible to refactor after the beige
 
 #
 # Before any state transitions, only 'initial' is allowed
