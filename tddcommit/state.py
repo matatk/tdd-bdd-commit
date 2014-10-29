@@ -30,3 +30,7 @@ class State:
     def change(self, to_state):
         if self.allowed(to_state):
             self._current_state = to_state
+        else:
+            raise StateTransitionError(
+                'It is not valid to move from ' + str(self._current_state)
+                + 'to ' + str(to_state))
