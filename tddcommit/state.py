@@ -1,5 +1,9 @@
 from tddcommit import Kind
 
+class StateTransitionError(Exception):
+    pass
+
+
 class State:
     def __init__(self):
         self._current_state = None

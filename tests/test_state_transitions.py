@@ -1,4 +1,5 @@
-from tddcommit.state import State
+import pytest
+from tddcommit.state import State, StateTransitionError
 from tddcommit import Kind
 
 #
@@ -117,3 +118,13 @@ def test_merge_is_allowed_after_merge():
     state.change(Kind.green)
     state.change(Kind.merge)
     assert state.allowed(Kind.merge) is True
+
+
+#
+# Forcing a change to an invalid state raises
+#
+
+def test_changing_to_invalid_state_raises_error():
+    with pytest.raises(StateTransitionError):
+        state = State()
+        state.change(Kind.green)
