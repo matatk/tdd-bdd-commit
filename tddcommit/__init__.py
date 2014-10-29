@@ -4,3 +4,4 @@ class Kind:
     green = 'GREEN'
     refactor = 'REFACTOR'
     merge = 'MERGE'
+    beige = 'BEIGE'

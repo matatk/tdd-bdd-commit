@@ -13,17 +13,18 @@ Background
 In [Test-driven Development](http://en.wikipedia.org/wiki/Test-driven_development) there are three main types of commits:
 
  * "red" after a failing test/part-test;
- * "green" when that test/part passes and
+ * "green" when that test/part passes, and
  * "refactor" when changes are made to improve the code's quality along the lines of [DRY](http://en.wikipedia.org/wiki/Don't_repeat_yourself), the [single responsibility principle](http://en.wikipedia.org/wiki/Single_responsibility_principle) and other such guidelines.
 
 Commits should alternate between "red" and "green", with optional refactorings after a "green" commit.  It helps, particularly when performing a Test-driven Development kata, for the commit messages to tell a story (and, for katas, to be only one line, so they can be quickly read). This tool makes it easy to format them into sentences.
 
 **Note:** "green" commits do not need messages, as their purpose should be clear from the preceeding "red" commit.
 
-There are two additional types of commit:
+There are three additional types of commit (one is only used once per project):
 
- * "initial" is the first commit and
- * "merge" commits are used when bringing in commits from other branches or repositories.
+ * "initial" is the first commit;
+ * "merge" commits are used when bringing in commits from other branches or repositories, and
+ * "beige" commits affect parts of the project that are outside the remit of TDD, such as (some) documentation and static assets---do think carefully whether a green--red pattern would be more suitable, though!
 
 You will always have an initial commit, and may well use merge commits.  Initial commits do not need messages.  Merges can be carried out after green or refactor commits.
 

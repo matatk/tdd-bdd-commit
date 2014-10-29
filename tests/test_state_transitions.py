@@ -24,6 +24,11 @@ def test_red_is_allowed_after_initial():
     state.change(Kind.initial)
     assert state.allowed(Kind.red) is True
 
+def test_beige_is_allowed_after_initial():
+    state = State()
+    state.change(Kind.initial)
+    assert state.allowed(Kind.beige) is True
+
 
 #
 # What is allowed after 'red'?
