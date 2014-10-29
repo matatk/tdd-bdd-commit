@@ -33,6 +33,8 @@ class State:
                 return True
             elif proposed_state == Kind.red:
                 return True
+            elif proposed_state == Kind.merge:
+                return True
         return False
 
     def change(self, to_state):
