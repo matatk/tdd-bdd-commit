@@ -14,6 +14,7 @@ class State:
                 return True
         elif self._current_state == Kind.initial:
             if proposed_state == Kind.red \
+            or proposed_state == Kind.merge \
             or proposed_state == Kind.beige:
                 return True
         elif self._current_state == Kind.red:
