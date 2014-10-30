@@ -107,6 +107,12 @@ def test_states_allowed_after_beige():
     state.change(Kind.beige)
     _check_red_refactor_merge_and_beige_states_are_allowed(state)
 
+def test_refactor_not_allowed_after_beige_without_a_preceding_green():
+    state = State()
+    state.change(Kind.initial)
+    state.change(Kind.beige)
+    assert state.allowed(Kind.refactor) is False
+
 
 #
 # Forcing a change to an invalid state raises
