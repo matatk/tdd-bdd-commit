@@ -94,6 +94,12 @@ def test_states_allowed_after_merge():
     state.change(Kind.merge)
     _check_red_refactor_merge_and_beige_states_are_allowed(state)
 
+def test_refactor_not_allowed_after_merge_without_a_preceding_green():
+    state = State()
+    state.change(Kind.initial)
+    state.change(Kind.merge)
+    assert state.allowed(Kind.refactor) is False
+
 
 #
 # What is allowed after 'beige'?
