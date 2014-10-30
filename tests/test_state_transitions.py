@@ -45,7 +45,7 @@ def test_green_is_allowed_after_red():
 # Common test for when Red, Refactor, Merge and Beige should be allowed
 #
 
-def _check_standard_next_states_are_allowed(state):
+def _check_red_refactor_merge_and_beige_states_are_allowed(state):
     assert state.allowed(Kind.red) is True
     assert state.allowed(Kind.refactor) is True
     assert state.allowed(Kind.merge) is True
@@ -65,7 +65,7 @@ def state_green():
     return state
 
 def test_states_allowed_after_green(state_green):
-    _check_standard_next_states_are_allowed(state_green)
+    _check_red_refactor_merge_and_beige_states_are_allowed(state_green)
 
 
 #
@@ -82,7 +82,7 @@ def state_refactor():
     return state
 
 def test_states_allowed_after_refactor(state_refactor):
-    _check_standard_next_states_are_allowed(state_refactor)
+    _check_red_refactor_merge_and_beige_states_are_allowed(state_refactor)
 
 
 #
@@ -99,7 +99,7 @@ def state_merge():
     return state
 
 def test_states_allowed_after_merge(state_merge):
-    _check_standard_next_states_are_allowed(state_merge)
+    _check_red_refactor_merge_and_beige_states_are_allowed(state_merge)
 
 
 #
@@ -116,7 +116,7 @@ def state_beige():
     return state
 
 def test_states_allowed_after_beige(state_beige):
-    _check_standard_next_states_are_allowed(state_beige)
+    _check_red_refactor_merge_and_beige_states_are_allowed(state_beige)
 
 
 #
