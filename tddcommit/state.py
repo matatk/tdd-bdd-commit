@@ -11,30 +11,30 @@ class State:
 
     def allowed(self, proposed_state):
         if not self._current_state:
-            if proposed_state == Kind.initial:
+            if proposed_state is Kind.initial:
                 return True
-        elif self._current_state == Kind.initial:
-            if proposed_state == Kind.red \
-            or proposed_state == Kind.merge \
-            or proposed_state == Kind.beige:
+        elif self._current_state is Kind.initial:
+            if proposed_state is Kind.red \
+            or proposed_state is Kind.merge \
+            or proposed_state is Kind.beige:
                 return True
-        elif self._current_state == Kind.red:
-            if proposed_state == Kind.green:
+        elif self._current_state is Kind.red:
+            if proposed_state is Kind.green:
                 return True
-        elif self._current_state == Kind.green \
-          or self._current_state == Kind.refactor \
-          or self._current_state == Kind.merge \
-          or self._current_state == Kind.beige:
+        elif self._current_state is Kind.green \
+          or self._current_state is Kind.refactor \
+          or self._current_state is Kind.merge \
+          or self._current_state is Kind.beige:
             # Check to prevent refactors when there has been no green
-            if self._current_state == Kind.beige \
-            and proposed_state == Kind.refactor \
+            if self._current_state is Kind.beige \
+            and proposed_state is Kind.refactor \
             and not self._had_green:
                 return False
             # Otherwise allow all sensible state changes
-            if proposed_state == Kind.refactor \
-            or proposed_state == Kind.red \
-            or proposed_state == Kind.merge \
-            or proposed_state == Kind.beige:
+            if proposed_state is Kind.refactor \
+            or proposed_state is Kind.red \
+            or proposed_state is Kind.merge \
+            or proposed_state is Kind.beige:
                 return True
         return False
 
