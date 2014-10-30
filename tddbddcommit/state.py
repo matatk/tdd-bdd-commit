@@ -1,4 +1,4 @@
-from tddcommit import Kind
+from tddbddcommit import Kind
 
 class StateTransitionError(Exception):
     pass

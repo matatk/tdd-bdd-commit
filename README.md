@@ -1,5 +1,5 @@
-TDD Commit
-===========
+TDD/BDD Commit
+===============
 
 Helps you stick to the "red", "green"\[, "refactor"\] (and more) pattern of commits when using [Test-driven Development](http://en.wikipedia.org/wiki/Test-driven_development).
 
@@ -10,7 +10,7 @@ Instead of using `git commit ...`, you'd issue `commit red`, `commit green`, and
 Background
 -----------
 
-In [Test-driven Development](http://en.wikipedia.org/wiki/Test-driven_development) there are three main types of commits:
+In [Test-driven development](http://en.wikipedia.org/wiki/Test-driven_development) and [Behaviour-driven development](http://en.wikipedia.org/wiki/Behavior-driven_development) there are three main types of commits:
 
  * "red" after a failing test/part-test;
  * "green" when that test/part passes, and

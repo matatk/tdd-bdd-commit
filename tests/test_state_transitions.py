@@ -1,6 +1,6 @@
 import pytest
-from tddcommit.state import State, StateTransitionError
-from tddcommit import Kind
+from tddbddcommit.state import State, StateTransitionError
+from tddbddcommit import Kind
 
 #
 # Before any state transitions, only 'initial' is allowed
