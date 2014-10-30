@@ -61,67 +61,51 @@ def _check_red_refactor_merge_and_beige_states_are_allowed(state):
 # What is allowed after 'green'?
 #
 
-@pytest.fixture
-def state_green():
+def test_states_allowed_after_green():
     state = State()
     state.change(Kind.initial)
     state.change(Kind.red)
     state.change(Kind.green)
-    return state
-
-def test_states_allowed_after_green(state_green):
-    _check_red_refactor_merge_and_beige_states_are_allowed(state_green)
+    _check_red_refactor_merge_and_beige_states_are_allowed(state)
 
 
 #
 # What is allowed after 'refactor'?
 #
 
-@pytest.fixture
-def state_refactor():
+def test_states_allowed_after_refactor():
     state = State()
     state.change(Kind.initial)
     state.change(Kind.red)
     state.change(Kind.green)
     state.change(Kind.refactor)
-    return state
-
-def test_states_allowed_after_refactor(state_refactor):
-    _check_red_refactor_merge_and_beige_states_are_allowed(state_refactor)
+    _check_red_refactor_merge_and_beige_states_are_allowed(state)
 
 
 #
 # What is allowed after 'merge'?
 #
 
-@pytest.fixture
-def state_merge():
+def test_states_allowed_after_merge():
     state = State()
     state.change(Kind.initial)
     state.change(Kind.red)
     state.change(Kind.green)
     state.change(Kind.merge)
-    return state
-
-def test_states_allowed_after_merge(state_merge):
-    _check_red_refactor_merge_and_beige_states_are_allowed(state_merge)
+    _check_red_refactor_merge_and_beige_states_are_allowed(state)
 
 
 #
 # What is allowed after 'beige'?
 #
 
-@pytest.fixture
-def state_beige():
+def test_states_allowed_after_beige():
     state = State()
     state.change(Kind.initial)
     state.change(Kind.red)
     state.change(Kind.green)
     state.change(Kind.beige)
-    return state
-
-def test_states_allowed_after_beige(state_beige):
-    _check_red_refactor_merge_and_beige_states_are_allowed(state_beige)
+    _check_red_refactor_merge_and_beige_states_are_allowed(state)
 
 
 #
