@@ -26,7 +26,8 @@ class State:
           or self._current_state is Kind.merge \
           or self._current_state is Kind.beige:
             # Check to prevent refactors when there has been no green
-            if self._current_state is Kind.beige \
+            if (self._current_state is Kind.beige \
+            or self._current_state is Kind.merge) \
             and proposed_state is Kind.refactor \
             and not self._had_green:
                 return False
