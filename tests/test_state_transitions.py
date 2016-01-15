@@ -2,6 +2,7 @@ import pytest
 from tddbddcommit.state import State, StateTransitionError
 from tddbddcommit import Kind
 
+
 #
 # Before any state transitions, only 'initial' is allowed
 #
@@ -9,6 +10,7 @@ from tddbddcommit import Kind
 def test_initial_is_allowed_first():
     state = State()
     assert state.allowed(Kind.initial) is True
+
 
 def test_only_initial_is_allowed_first():
     state = State()
@@ -24,10 +26,12 @@ def test_red_is_allowed_after_initial():
     state.change(Kind.initial)
     assert state.allowed(Kind.red) is True
 
+
 def test_merge_is_allowed_after_initial():
     state = State()
     state.change(Kind.initial)
     assert state.allowed(Kind.merge) is True
+
 
 def test_beige_is_allowed_after_initial():
     state = State()
@@ -94,6 +98,7 @@ def test_states_allowed_after_merge():
     state.change(Kind.merge)
     _check_red_refactor_merge_and_beige_states_are_allowed(state)
 
+
 def test_refactor_not_allowed_after_merge_without_a_preceding_green():
     state = State()
     state.change(Kind.initial)
@@ -112,6 +117,7 @@ def test_states_allowed_after_beige():
     state.change(Kind.green)
     state.change(Kind.beige)
     _check_red_refactor_merge_and_beige_states_are_allowed(state)
+
 
 def test_refactor_not_allowed_after_beige_without_a_preceding_green():
     state = State()

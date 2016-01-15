@@ -1,5 +1,6 @@
 from tddbddcommit import Kind
 
+
 class StateTransitionError(Exception):
     pass
 
@@ -14,27 +15,27 @@ class State:
             if proposed_state is Kind.initial:
                 return True
         elif self._current_state is Kind.initial:
-            if proposed_state is Kind.red \
-            or proposed_state is Kind.merge \
-            or proposed_state is Kind.beige:
+            if (proposed_state is Kind.red
+               or proposed_state is Kind.merge
+               or proposed_state is Kind.beige):
                 return True
         elif self._current_state is Kind.red:
             if proposed_state is Kind.green:
                 return True
-        elif self._current_state is Kind.green \
-          or self._current_state is Kind.refactor \
-          or self._current_state is Kind.merge \
-          or self._current_state is Kind.beige:
+        elif (self._current_state is Kind.green
+              or self._current_state is Kind.refactor
+              or self._current_state is Kind.merge
+              or self._current_state is Kind.beige):
             # Check to prevent refactors when there has been no green
-            if self._current_state is Kind.merge \
-            or self._current_state is Kind.beige:
+            if (self._current_state is Kind.merge
+               or self._current_state is Kind.beige):
                 if proposed_state is Kind.refactor and not self._had_green:
                     return False
             # Otherwise allow all sensible state changes
-            if proposed_state is Kind.refactor \
-            or proposed_state is Kind.red \
-            or proposed_state is Kind.merge \
-            or proposed_state is Kind.beige:
+            if (proposed_state is Kind.refactor
+               or proposed_state is Kind.red
+               or proposed_state is Kind.merge
+               or proposed_state is Kind.beige):
                 return True
         return False
 
