@@ -51,5 +51,8 @@ class State:
                 'to ' + str(to_state))
 
     def check_git_log(self):
-        subprocess.Popen(['git', 'log', '--pretty=format:"%s"'])
-        self._had_green = True
+        proc = subprocess.Popen(['git', 'log', '--pretty=format:"%s"'])
+        for line in proc.stdout:
+            if line[1:6] == 'GREEN':
+                self._had_green = True
+                break
