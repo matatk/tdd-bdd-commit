@@ -157,3 +157,12 @@ def test_test_green_found_in_log_check():
     subprocess.Popen = mock.MagicMock(return_value=fake_log)
     state.check_git_log()
     assert state._had_green is True
+
+
+def test_test_no_green_found_in_log_check():
+    fake_log = ('"RED Messages should be wrapped in quotes."\n'
+                '"INITIAL"\n')
+    state = State()
+    subprocess.Popen = mock.MagicMock(return_value=fake_log)
+    state.check_git_log()
+    assert state._had_green is False
