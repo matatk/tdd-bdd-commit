@@ -14,17 +14,17 @@ digraph commit_states {
 	initial -> red;
 	initial -> mb [constraint=false];
 
-	red -> green;
+	red -> green [color=blue];
 
-	green -> red;
+	green -> red [color=blue];
 	green -> mb;
-	green -> refactor;
+	green -> refactor [color=blue];
 
 	mb -> red;
 	mb -> refactor;
 	mb -> mb;
 
-	refactor -> red;
-	refactor -> refactor;
+	refactor -> red [color=blue];
+	refactor -> refactor [color=blue];
 	refactor -> mb;
 }

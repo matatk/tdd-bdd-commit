@@ -14,6 +14,8 @@ limits and quotes inside the messages are handled.
 
 ![Graph of commit states (described below)](graph/commit-states.png)
 
+(The blue arrows highlight the central "red-green-refactor" cycle.)
+
 Background
 ----------
 
@@ -40,7 +42,7 @@ only one line, so they can be quickly read). This tool makes it easy to
 format them into sentences.
 
 **Note:** "green" commits do not need messages, as their purpose should
-be clear from the preceeding "red" commit.
+be clear from the preceding "red" commit.
 
 There are three additional types of commit (one is only used once per
 project):
@@ -70,14 +72,14 @@ There are two ways to specify commit messages...
 
 -   Specify a header line whilst using the `commit` command; this should
     briefly explain the main purpose of the changes in the commit.
--   You can also give a body to the commit message, containing more
-    details. This can be done by including the body information in a
-    `CHANGES` file in the root of the repository.
+-   You can also give a body to the commit message, containing
+    more details. This can be done by including the body information in
+    a `CHANGES` file in the root of the repository.
     -   The contents of this file are treated as the body (a good format
-        for this file would be an asterisk-bulleted list with no leading
-        linespace). **Note that lines are not auto-wrapped.**
-    -   The file is emptied after a successful commit, so you can start
-        again.
+        for this file would be an asterisk-bulleted list with no
+        leading linespace). **Note that lines are not auto-wrapped.**
+    -   The file is emptied after a successful commit, so you can
+        start again.
 
 ### Example CHANGES file
 
@@ -116,4 +118,4 @@ Activate the virtual environment and set the path for testing
 script will be automatically sourced when you enter the directory.
 
 The tests can be run continuously with `py.test --looponfail tests` or
-`py.test -f tests`
+`py.test -f tests`.
