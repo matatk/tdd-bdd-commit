@@ -134,3 +134,12 @@ def test_changing_to_invalid_state_raises_error():
     with pytest.raises(StateTransitionError):
         state = State()
         state.change(Kind.green)
+
+
+#
+# Check through the git log to see if we've had a green before
+#
+
+def test_look_for_previous_green_commit_in_git_log():
+    state = State()
+    state.check_git_log()
