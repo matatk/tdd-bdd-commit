@@ -21,7 +21,7 @@ digraph commit_states {
 	green -> refactor;
 
 	mb -> red;
-	mb -> refactor [style=dotted];
+	mb -> refactor;
 	mb -> mb;
 
 	refactor -> red;
