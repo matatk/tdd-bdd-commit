@@ -52,3 +52,4 @@ class State:
 
     def check_git_log(self):
         subprocess.Popen(['git', 'log', '--pretty=format:"%s"'])
+        self._had_green = True
