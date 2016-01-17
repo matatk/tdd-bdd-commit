@@ -48,3 +48,6 @@ class State:
             raise StateTransitionError(
                 'It is not valid to move from ' + str(self._current_state) +
                 'to ' + str(to_state))
+
+    def check_git_log(self):
+        pass
