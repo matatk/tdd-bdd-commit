@@ -1,3 +1,5 @@
+import mock
+import subprocess
 import pytest
 from tddbddcommit.state import State, StateTransitionError
 from tddbddcommit import Kind
@@ -142,4 +144,6 @@ def test_changing_to_invalid_state_raises_error():
 
 def test_look_for_previous_green_commit_in_git_log():
     state = State()
+    subprocess.Popen = mock.MagicMock()
     state.check_git_log()
+    subprocess.Popen.assert_called_with(['git', 'log', '--pretty=format:"%s"'])
