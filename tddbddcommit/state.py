@@ -1,3 +1,4 @@
+import subprocess
 from tddbddcommit import Kind
 
 
@@ -50,4 +51,4 @@ class State:
                 'to ' + str(to_state))
 
     def check_git_log(self):
-        pass
+        subprocess.Popen(['git', 'log', '--pretty=format:"%s"'])
