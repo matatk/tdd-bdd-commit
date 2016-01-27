@@ -49,3 +49,9 @@ def test_empty_kind_raises_error():
     with pytest.raises(MessageBodyError) as excinfo:
         MessageBody(None, '42')
     assert 'No commit kind given' in str(excinfo.value)
+
+
+def test_invalid_kind_raises_error():
+    with pytest.raises(MessageBodyError) as excinfo:
+        MessageBody(42, '42')
+    assert 'Invalid commit kind given' in str(excinfo.value)
