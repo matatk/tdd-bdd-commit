@@ -1,3 +1,6 @@
+_valid_commit_kinds = ['INITIAL', 'RED', 'GREEN', 'REFACTOR', 'MERGE', 'BEIGE']
+
+
 class MessageBodyError(Exception):
     pass
 
@@ -11,6 +14,8 @@ class MessageBody:
         self._message = self._capitalise_first(message)
         if not kind:
             raise MessageBodyError('No commit kind given')
+        if kind not in _valid_commit_kinds:
+            raise MessageBodyError('Invalid commit kind given')
         self._kind = kind
         total_length = len(self._kind) + len(self._message) + 1  # the space
         if total_length > self.max_length:
