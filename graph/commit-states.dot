@@ -1,14 +1,14 @@
 digraph commit_states {
 	rankdir="LR";
 
+	initial [label="Initial"];
 	red [label="Red"];
 	{
 		rank=same;
 		mb [label="Merge\nor Beige"];
 		refactor [label="Refactor"];
 	}
-	node [shape=box];
-	initial [label="Initial"];
+
 	green [label="Green"];
 
 	initial -> red;
