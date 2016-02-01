@@ -1,41 +1,25 @@
 from tddbddcommit import Kind
 
 
-class StateTransitionError(Exception):
-    pass
-
-
-class State:
-    def __init__(self):
-        self._current_state = None
-
-    def allowed(self, proposed_state):
-        if not self._current_state:
-            if proposed_state is Kind.initial:
-                return True
-        elif self._current_state is Kind.initial:
-            if (proposed_state is Kind.red or
-               proposed_state is Kind.merge or
-               proposed_state is Kind.beige):
-                return True
-        elif self._current_state is Kind.red:
-            if proposed_state is Kind.green:
-                return True
-        elif (self._current_state is Kind.green or
-              self._current_state is Kind.refactor or
-              self._current_state is Kind.merge or
-              self._current_state is Kind.beige):
-            if (proposed_state is Kind.refactor or
-               proposed_state is Kind.red or
-               proposed_state is Kind.merge or
-               proposed_state is Kind.beige):
-                return True
-        return False
-
-    def change(self, to_state):
-        if self.allowed(to_state):
-            self._current_state = to_state
-        else:
-            raise StateTransitionError(
-                'It is not valid to move from ' + str(self._current_state) +
-                'to ' + str(to_state))
+def allowed(current_state, proposed_state):
+    if not current_state:
+        if proposed_state is Kind.initial:
+            return True
+    elif current_state is Kind.initial:
+        if (proposed_state is Kind.red or
+           proposed_state is Kind.merge or
+           proposed_state is Kind.beige):
+            return True
+    elif current_state is Kind.red:
+        if proposed_state is Kind.green:
+            return True
+    elif (current_state is Kind.green or
+          current_state is Kind.refactor or
+          current_state is Kind.merge or
+          current_state is Kind.beige):
+        if (proposed_state is Kind.refactor or
+           proposed_state is Kind.red or
+           proposed_state is Kind.merge or
+           proposed_state is Kind.beige):
+            return True
+    return False
