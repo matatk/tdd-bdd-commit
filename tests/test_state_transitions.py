@@ -1,6 +1,5 @@
-import pytest
-from tddbddcommit.state import State, StateTransitionError
 from tddbddcommit import Kind
+from tddbddcommit.state import allowed
 
 
 #
@@ -8,13 +7,11 @@ from tddbddcommit import Kind
 #
 
 def test_initial_is_allowed_first():
-    state = State()
-    assert state.allowed(Kind.initial) is True
+    assert allowed(None, Kind.initial) is True
 
 
 def test_only_initial_is_allowed_first():
-    state = State()
-    assert state.allowed(None) is False
+    assert allowed(None, Kind.red) is False
 
 
 #
@@ -22,21 +19,15 @@ def test_only_initial_is_allowed_first():
 #
 
 def test_red_is_allowed_after_initial():
-    state = State()
-    state.change(Kind.initial)
-    assert state.allowed(Kind.red) is True
+    assert allowed(Kind.initial, Kind.red) is True
 
 
 def test_merge_is_allowed_after_initial():
-    state = State()
-    state.change(Kind.initial)
-    assert state.allowed(Kind.merge) is True
+    assert allowed(Kind.initial, Kind.merge) is True
 
 
 def test_beige_is_allowed_after_initial():
-    state = State()
-    state.change(Kind.initial)
-    assert state.allowed(Kind.beige) is True
+    assert allowed(Kind.initial, Kind.beige) is True
 
 
 #
@@ -44,21 +35,18 @@ def test_beige_is_allowed_after_initial():
 #
 
 def test_green_is_allowed_after_red():
-    state = State()
-    state.change(Kind.initial)
-    state.change(Kind.red)
-    assert state.allowed(Kind.green) is True
+    assert allowed(Kind.red, Kind.green) is True
 
 
 #
 # Common test for when Red, Refactor, Merge and Beige should be allowed
 #
 
-def _check_red_refactor_merge_and_beige_states_are_allowed(state):
-    assert state.allowed(Kind.red) is True
-    assert state.allowed(Kind.refactor) is True
-    assert state.allowed(Kind.merge) is True
-    assert state.allowed(Kind.beige) is True
+def _check_red_refactor_merge_beige_states_are_allowed(current):
+    assert allowed(current, Kind.red) is True
+    assert allowed(current, Kind.refactor) is True
+    assert allowed(current, Kind.merge) is True
+    assert allowed(current, Kind.beige) is True
 
 
 #
@@ -66,11 +54,7 @@ def _check_red_refactor_merge_and_beige_states_are_allowed(state):
 #
 
 def test_states_allowed_after_green():
-    state = State()
-    state.change(Kind.initial)
-    state.change(Kind.red)
-    state.change(Kind.green)
-    _check_red_refactor_merge_and_beige_states_are_allowed(state)
+    _check_red_refactor_merge_beige_states_are_allowed(Kind.green)
 
 
 #
@@ -78,12 +62,7 @@ def test_states_allowed_after_green():
 #
 
 def test_states_allowed_after_refactor():
-    state = State()
-    state.change(Kind.initial)
-    state.change(Kind.red)
-    state.change(Kind.green)
-    state.change(Kind.refactor)
-    _check_red_refactor_merge_and_beige_states_are_allowed(state)
+    _check_red_refactor_merge_beige_states_are_allowed(Kind.refactor)
 
 
 #
@@ -91,12 +70,7 @@ def test_states_allowed_after_refactor():
 #
 
 def test_states_allowed_after_merge():
-    state = State()
-    state.change(Kind.initial)
-    state.change(Kind.red)
-    state.change(Kind.green)
-    state.change(Kind.merge)
-    _check_red_refactor_merge_and_beige_states_are_allowed(state)
+    _check_red_refactor_merge_beige_states_are_allowed(Kind.merge)
 
 
 #
@@ -104,19 +78,4 @@ def test_states_allowed_after_merge():
 #
 
 def test_states_allowed_after_beige():
-    state = State()
-    state.change(Kind.initial)
-    state.change(Kind.red)
-    state.change(Kind.green)
-    state.change(Kind.beige)
-    _check_red_refactor_merge_and_beige_states_are_allowed(state)
-
-
-#
-# Forcing a change to an invalid state raises
-#
-
-def test_changing_to_invalid_state_raises_error():
-    with pytest.raises(StateTransitionError):
-        state = State()
-        state.change(Kind.green)
+    _check_red_refactor_merge_beige_states_are_allowed(Kind.beige)
