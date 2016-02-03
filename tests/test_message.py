@@ -48,22 +48,8 @@ def test_long_summary_raises_error():
 # Summary string handling
 #
 
-def test_summary_is_wrapped_in_quotes():
-    msg = Message()
-    msg.kind(Kind.red)
-    msg.summary('Forty-two')
-    assert str(msg) == '"RED Forty-two"'
-
-
 def test_first_letter_capitalised():
     msg = Message()
     msg.kind(Kind.red)
     msg.summary('forty-two')
-    assert str(msg) == '"RED Forty-two"'
-
-
-def test_summary_with_double_quote_is_wrapped_with_single():
-    msg = Message()
-    msg.kind(Kind.red)
-    msg.summary('But what are "Birds"?')
-    assert str(msg) == r"""'RED But what are "Birds"?'"""
+    assert str(msg) == 'RED Forty-two'

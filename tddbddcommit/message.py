@@ -36,7 +36,4 @@ class Message:
         return string[0].upper() + string[1:]
 
     def __str__(self):
-        if '"' in self._summary:
-            return "'" + self._kind + ' ' + self._summary + "'"
-        else:
-            return '"' + self._kind + ' ' + self._summary + '"'
+        return self._kind + ' ' + self._summary
