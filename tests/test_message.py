@@ -53,3 +53,17 @@ def test_first_letter_capitalised():
     msg.kind(Kind.red)
     msg.summary('forty-two')
     assert str(msg) == 'RED Forty-two'
+
+
+#
+# Full-format messages
+#
+
+def test_messgae_with_body_contains_blank_line():
+    msg = Message()
+    msg.kind(Kind.red)
+    msg.summary('Forty-two')
+    msg.body('Amazing!')
+    assert str(msg) == """RED Forty-two
+
+Amazing!"""
