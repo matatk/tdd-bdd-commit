@@ -1,7 +1,7 @@
 _valid_commit_kinds = ['INITIAL', 'RED', 'GREEN', 'REFACTOR', 'MERGE', 'BEIGE']
 
 
-class MessageSummaryError(Exception):
+class MessageError(Exception):
     pass
 
 
@@ -17,19 +17,19 @@ class Message:
         if kind in _valid_commit_kinds:
             self._kind = kind
         else:
-            raise MessageSummaryError('Invalid commit kind given')
+            raise MessageError('Invalid commit kind given')
 
     def summary(self, summary):
         if not summary:
-            raise MessageSummaryError('No message given')
+            raise MessageError('No summary given')
         if not self._kind:
-            raise MessageSummaryError('No commit kind given')
+            raise MessageError('No commit kind given')
         self._summary = self._capitalise_first(summary)
         total_length = len(self._kind) + len(self._summary) + 1  # the space
         if total_length > self.max_summary_length:
             overflow = total_length - self.max_summary_length
-            raise MessageSummaryError(
-                'Given message is ' + str(overflow) + ' character(s) too long')
+            raise MessageError(
+                'Given summary is ' + str(overflow) + ' character(s) too long')
 
     @staticmethod
     def _capitalise_first(string):

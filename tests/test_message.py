@@ -1,5 +1,5 @@
 import pytest
-from tddbddcommit.message import Message, MessageSummaryError
+from tddbddcommit.message import Message, MessageError
 from tddbddcommit import Kind
 
 
@@ -8,36 +8,36 @@ from tddbddcommit import Kind
 #
 
 def test_invalid_kind_raises_error():
-    with pytest.raises(MessageSummaryError) as excinfo:
+    with pytest.raises(MessageError) as excinfo:
         msg = Message()
         msg.kind(42)
     assert 'Invalid commit kind given' in str(excinfo.value)
 
 
 #
-# Message Validity
+# Summary Validity
 #
 
-def test_setting_message_without_kind_raises_error():
-    with pytest.raises(MessageSummaryError) as excinfo:
+def test_setting_summary_without_kind_raises_error():
+    with pytest.raises(MessageError) as excinfo:
         msg = Message()
         msg.summary('forty-two')
     assert 'No commit kind given' in str(excinfo.value)
 
 
-def test_empty_message_raises_error():
-    with pytest.raises(MessageSummaryError) as excinfo:
+def test_empty_summary_raises_error():
+    with pytest.raises(MessageError) as excinfo:
         msg = Message()
         msg.kind(Kind.red)
         msg.summary(None)
-    assert 'No message given' in str(excinfo.value)
+    assert 'No summary given' in str(excinfo.value)
 
 
-def test_long_message_raises_error():
+def test_long_summary_raises_error():
     max_length = 75
     max_red_length = max_length - 1 - len(Kind.red)
     long_message = '@' * (max_red_length + 1)
-    with pytest.raises(MessageSummaryError) as excinfo:
+    with pytest.raises(MessageError) as excinfo:
         msg = Message()
         msg.kind(Kind.red)
         msg.summary(long_message)
@@ -45,10 +45,10 @@ def test_long_message_raises_error():
 
 
 #
-# String handling
+# Summary string handling
 #
 
-def test_message_is_wrapped_in_quotes():
+def test_summary_is_wrapped_in_quotes():
     msg = Message()
     msg.kind(Kind.red)
     msg.summary('Forty-two')
@@ -62,7 +62,7 @@ def test_first_letter_capitalised():
     assert str(msg) == '"RED Forty-two"'
 
 
-def test_message_with_double_quote_is_wrapped_with_single():
+def test_summary_with_double_quote_is_wrapped_with_single():
     msg = Message()
     msg.kind(Kind.red)
     msg.summary('But what are "Birds"?')
