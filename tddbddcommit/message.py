@@ -8,16 +8,24 @@ class MessageSummaryError(Exception):
 class Message:
     max_summary_length = 75
 
-    def __init__(self, kind, message):
-        if not message:
-            raise MessageSummaryError('No message given')
-        self._message = self._capitalise_first(message)
+    def __init__(self):
+        self._kind = None
+        self._summary = None
+        self._body = None
+
+    def kind(self, kind):
         if not kind:
             raise MessageSummaryError('No commit kind given')
-        if kind not in _valid_commit_kinds:
+        if kind in _valid_commit_kinds:
+            self._kind = kind
+        else:
             raise MessageSummaryError('Invalid commit kind given')
-        self._kind = kind
-        total_length = len(self._kind) + len(self._message) + 1  # the space
+
+    def summary(self, summary):
+        if not summary:
+            raise MessageSummaryError('No message given')
+        self._summary = self._capitalise_first(summary)
+        total_length = len(self._kind) + len(self._summary) + 1  # the space
         if total_length > self.max_summary_length:
             overflow = total_length - self.max_summary_length
             raise MessageSummaryError(
@@ -28,7 +36,7 @@ class Message:
         return string[0].upper() + string[1:]
 
     def __str__(self):
-        if '"' in self._message:
-            return "'" + self._kind + ' ' + self._message + "'"
+        if '"' in self._summary:
+            return "'" + self._kind + ' ' + self._summary + "'"
         else:
-            return '"' + self._kind + ' ' + self._message + '"'
+            return '"' + self._kind + ' ' + self._summary + '"'

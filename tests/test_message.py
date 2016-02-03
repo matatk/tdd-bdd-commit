@@ -8,17 +8,23 @@ from tddbddcommit import Kind
 #
 
 def test_message_is_wrapped_in_quotes():
-    msg = Message(Kind.red, 'Forty-two')
+    msg = Message()
+    msg.kind(Kind.red)
+    msg.summary('Forty-two')
     assert str(msg) == '"RED Forty-two"'
 
 
 def test_first_letter_capitalised():
-    msg = Message(Kind.red, 'forty-two')
+    msg = Message()
+    msg.kind(Kind.red)
+    msg.summary('forty-two')
     assert str(msg) == '"RED Forty-two"'
 
 
 def test_message_with_double_quote_is_wrapped_with_single():
-    msg = Message(Kind.red, 'But what are "Birds"?')
+    msg = Message()
+    msg.kind(Kind.red)
+    msg.summary('But what are "Birds"?')
     assert str(msg) == r"""'RED But what are "Birds"?'"""
 
 
@@ -31,13 +37,17 @@ def test_long_message_raises_error():
     max_red_length = max_length - 1 - len(Kind.red)
     long_message = '@' * (max_red_length + 1)
     with pytest.raises(MessageSummaryError) as excinfo:
-        Message(Kind.red, long_message)
+        msg = Message()
+        msg.kind(Kind.red)
+        msg.summary(long_message)
     assert '1 character(s) too long' in str(excinfo.value)
 
 
 def test_empty_message_raises_error():
     with pytest.raises(MessageSummaryError) as excinfo:
-        Message(Kind.red, None)
+        msg = Message()
+        msg.kind(Kind.red)
+        msg.summary(None)
     assert 'No message given' in str(excinfo.value)
 
 
@@ -47,11 +57,15 @@ def test_empty_message_raises_error():
 
 def test_empty_kind_raises_error():
     with pytest.raises(MessageSummaryError) as excinfo:
-        Message(None, '42')
+        msg = Message()
+        msg.kind(None)
+        msg.summary('42')
     assert 'No commit kind given' in str(excinfo.value)
 
 
 def test_invalid_kind_raises_error():
     with pytest.raises(MessageSummaryError) as excinfo:
-        Message(42, '42')
+        msg = Message()
+        msg.kind(42)
+        msg.summary('42')
     assert 'Invalid commit kind given' in str(excinfo.value)
