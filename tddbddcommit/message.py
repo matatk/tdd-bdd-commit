@@ -22,6 +22,8 @@ class Message:
     def summary(self, summary):
         if not summary:
             raise MessageSummaryError('No message given')
+        if not self._kind:
+            raise MessageSummaryError('No commit kind given')
         self._summary = self._capitalise_first(summary)
         total_length = len(self._kind) + len(self._summary) + 1  # the space
         if total_length > self.max_summary_length:
