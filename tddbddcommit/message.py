@@ -5,7 +5,7 @@ class MessageSummaryError(Exception):
     pass
 
 
-class MessageSummary:
+class Message:
     max_length = 75
 
     def __init__(self, kind, message):
