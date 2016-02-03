@@ -31,9 +31,15 @@ class Message:
             raise MessageError(
                 'Given summary is ' + str(overflow) + ' character(s) too long')
 
+    def body(self, body):
+        self._body = body
+
     @staticmethod
     def _capitalise_first(string):
         return string[0].upper() + string[1:]
 
     def __str__(self):
-        return self._kind + ' ' + self._summary
+        if self._body:
+            return self._kind + ' ' + self._summary + '\n\n' + self._body
+        else:
+            return self._kind + ' ' + self._summary
