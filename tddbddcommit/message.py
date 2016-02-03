@@ -14,8 +14,6 @@ class Message:
         self._body = None
 
     def kind(self, kind):
-        if not kind:
-            raise MessageSummaryError('No commit kind given')
         if kind in _valid_commit_kinds:
             self._kind = kind
         else:

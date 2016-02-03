@@ -55,14 +55,6 @@ def test_empty_message_raises_error():
 # Kind Validity
 #
 
-def test_empty_kind_raises_error():
-    with pytest.raises(MessageSummaryError) as excinfo:
-        msg = Message()
-        msg.kind(None)
-        msg.summary('42')
-    assert 'No commit kind given' in str(excinfo.value)
-
-
 def test_invalid_kind_raises_error():
     with pytest.raises(MessageSummaryError) as excinfo:
         msg = Message()
