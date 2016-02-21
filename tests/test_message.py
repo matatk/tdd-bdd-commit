@@ -28,6 +28,12 @@ def test_long_summary_raises_error():
     assert '1 character(s) too long' in str(excinfo.value)
 
 
+def test_a_green_commit_must_not_have_a_summary():
+    with pytest.raises(MessageError) as excinfo:
+        Message(Kind.green, 'forty-two')
+    assert 'Green commits should not have a summary' in str(excinfo.value)
+
+
 # Summary string handling
 
 def test_first_letter_capitalised():
