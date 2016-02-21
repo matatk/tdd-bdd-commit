@@ -22,6 +22,9 @@ class Message:
     def _check_summary(self, summary):
         if not summary:
             raise MessageError('No summary given')
+        else:
+            if self._kind is 'GREEN':
+                raise MessageError('Green commits should not have a summary')
         summary = Message.capitalise_first(summary)
         total_length = len(self._kind) + len(summary) + 1  # the space
         if total_length > _max_summary_length:
