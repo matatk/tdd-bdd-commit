@@ -14,17 +14,15 @@ class Message:
 
     @staticmethod
     def _check_kind(kind):
-        if kind in _valid_commit_kinds:
-            return kind
-        else:
+        if kind not in _valid_commit_kinds:
             raise MessageError('Invalid commit kind given')
+        return kind
 
     def _check_summary(self, summary):
         if not summary:
             raise MessageError('No summary given')
-        else:
-            if self._kind is 'GREEN':
-                raise MessageError('Green commits should not have a summary')
+        if self._kind is 'GREEN':
+            raise MessageError('Green commits should not have a summary')
         summary = Message.capitalise_first(summary)
         total_length = len(self._kind) + len(summary) + 1  # the space
         if total_length > _max_summary_length:
